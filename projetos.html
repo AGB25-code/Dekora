@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Projetos em Destaque - Dekora - Decoração de interiores premium">
+    <title>Projetos em Destaque - Dekora</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        .projects-page {
+            padding: calc(var(--header-height) + var(--spacing-2xl)) 0 var(--spacing-2xl);
+        }
+
+        .back-button {
+            display: inline-block;
+            margin: var(--spacing-lg) auto;
+            padding: 1rem 2.5rem;
+            background-color: var(--color-primary);
+            color: #FFFFFF;
+            font-family: var(--font-body);
+            font-size: 0.9375rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            border-radius: 8px;
+            transition: var(--transition-base);
+            text-decoration: none;
+        }
+
+        .back-button:hover {
+            background-color: var(--color-secondary);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .back-button-container {
+            text-align: center;
+            padding: var(--spacing-xl) 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header class="header" id="header">
+        <nav class="nav container">
+            <a href="index.html#inicio" class="nav__logo">
+                <img src="logo.png" alt="Dekora - Decoração de Interiores" class="nav__logo-img">
+            </a>
+            <div class="nav__menu" id="nav-menu">
+                <ul class="nav__list">
+                    <li class="nav__item">
+                        <a href="index.html#inicio" class="nav__link">Início</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="index.html#dekora" class="nav__link">Dekora</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="projetos.html" class="nav__link">Projetos</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="catalogo.html" class="nav__link">Catálogo</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="index.html#contactos" class="nav__link">Contactos</a>
+                    </li>
+                </ul>
+            </div>
+            <button class="nav__toggle" id="nav-toggle" aria-label="Toggle navigation">
+                <span class="nav__toggle-line"></span>
+                <span class="nav__toggle-line"></span>
+                <span class="nav__toggle-line"></span>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Featured Projects Section -->
+    <section class="projects projects-page" id="projetos">
+        <div class="projects__container container">
+            <div class="projects__header">
+                <span class="section__subtitle">Portfólio</span>
+                <h2 class="section__title">Projetos em Destaque</h2>
+            </div>
+            <div class="projects__grid">
+                <article class="project__card">
+                    <div class="project__image">
+                        <img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=1200&h=750&fit=crop" alt="Apartamento Minimalista" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+                        <div class="project__overlay">
+                            <span class="project__category">Residencial</span>
+                        </div>
+                    </div>
+                    <div class="project__content">
+                        <h3 class="project__title">Apartamento Minimalista</h3>
+                        <p class="project__description">Elegância contemporânea com linhas limpas e paleta neutra</p>
+                    </div>
+                </article>
+
+                <article class="project__card">
+                    <div class="project__image">
+                        <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=1200&h=750&fit=crop" alt="Escritório Executivo" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+                        <div class="project__overlay">
+                            <span class="project__category">Comercial</span>
+                        </div>
+                    </div>
+                    <div class="project__content">
+                        <h3 class="project__title">Escritório Executivo</h3>
+                        <p class="project__description">Sofisticação e funcionalidade para ambiente corporativo</p>
+                    </div>
+                </article>
+
+                <article class="project__card">
+                    <div class="project__image">
+                        <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=1200&h=750&fit=crop" alt="Casa de Campo" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+                        <div class="project__overlay">
+                            <span class="project__category">Residencial</span>
+                        </div>
+                    </div>
+                    <div class="project__content">
+                        <h3 class="project__title">Casa de Campo</h3>
+                        <p class="project__description">Conforto rústico com toques modernos e acolhedores</p>
+                    </div>
+                </article>
+
+                <article class="project__card">
+                    <div class="project__image">
+                        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1200&h=750&fit=crop" alt="Restaurante Premium" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+                        <div class="project__overlay">
+                            <span class="project__category">Comercial</span>
+                        </div>
+                    </div>
+                    <div class="project__content">
+                        <h3 class="project__title">Restaurante Premium</h3>
+                        <p class="project__description">Atmosfera luxuosa para experiências gastronômicas únicas</p>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Back Button -->
+    <div class="back-button-container">
+        <a href="index.html#inicio" class="back-button">Voltar à Página Principal</a>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer__container container">
+            <div class="footer__content">
+                <div class="footer__brand">
+                    <h3 class="footer__logo">DEKORA</h3>
+                    <p class="footer__description">
+                        Transformando espaços em experiências únicas desde 2013.
+                    </p>
+                </div>
+
+                <div class="footer__links">
+                    <h4 class="footer__title">Links Rápidos</h4>
+                    <ul class="footer__list">
+                        <li><a href="index.html#inicio" class="footer__link">Início</a></li>
+                        <li><a href="index.html#dekora" class="footer__link">Dekora</a></li>
+                        <li><a href="projetos.html" class="footer__link">Projetos</a></li>
+                        <li><a href="catalogo.html" class="footer__link">Catálogo</a></li>
+                        <li><a href="index.html#contactos" class="footer__link">Contactos</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer__social">
+                    <h4 class="footer__title">Siga-nos</h4>
+                    <div class="footer__social-links">
+                        <a href="#" class="footer__social-link" aria-label="Instagram">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="footer__social-link" aria-label="Facebook">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="footer__social-link" aria-label="Pinterest">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <circle cx="12" cy="12" r="10"/>
+                                <path d="M8.5 14.5c.5 1.5 2 3 4 3 3 0 5-2 5-5.5 0-3-2-5-5-5-3.5 0-6 2.5-6 6 0 1.5.5 2.5 1.5 3.5"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer__bottom">
+                <p class="footer__copy">
+                    &copy; 2024 Dekora. Todos os direitos reservados.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

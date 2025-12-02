@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Catálogo de Mobiliário - Dekora - Decoração de interiores premium">
+    <title>Catálogo - Dekora</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        .catalog-page {
+            padding: calc(var(--header-height) + var(--spacing-2xl)) 0 var(--spacing-2xl);
+            background-color: var(--color-bg);
+        }
+
+        .catalog-hero {
+            text-align: center;
+            margin-bottom: var(--spacing-2xl);
+        }
+
+        .catalog-hero__title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            color: var(--color-primary);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .catalog-hero__subtitle {
+            font-size: 1.125rem;
+            color: var(--color-text-light);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .catalog-filter {
+            display: flex;
+            justify-content: center;
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-xl);
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.75rem 1.5rem;
+            background-color: transparent;
+            color: var(--color-text);
+            font-family: var(--font-body);
+            font-size: 0.875rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition-base);
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background-color: var(--color-secondary);
+            color: #FFFFFF;
+            border-color: var(--color-secondary);
+        }
+
+        .catalog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-2xl);
+        }
+
+        .catalog-item {
+            background-color: var(--color-bg);
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: var(--transition-base);
+        }
+
+        .catalog-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--color-secondary);
+        }
+
+        .catalog-item__image {
+            position: relative;
+            padding-bottom: 75%;
+            overflow: hidden;
+            background-color: var(--color-bg-light);
+        }
+
+        .catalog-item__image-placeholder {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--color-bg-dark) 0%, var(--color-secondary) 100%);
+            opacity: 0.2;
+            transition: var(--transition-slow);
+        }
+
+        .catalog-item:hover .catalog-item__image-placeholder {
+            opacity: 0.3;
+            transform: scale(1.05);
+        }
+
+        .catalog-item__badge {
+            position: absolute;
+            top: var(--spacing-sm);
+            right: var(--spacing-sm);
+            padding: 0.5rem 1rem;
+            background-color: var(--color-secondary);
+            color: #FFFFFF;
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            border-radius: 4px;
+            z-index: 1;
+        }
+
+        .catalog-item__content {
+            padding: var(--spacing-md);
+        }
+
+        .catalog-item__category {
+            font-size: 0.75rem;
+            color: var(--color-text-light);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .catalog-item__title {
+            font-size: 1.5rem;
+            color: var(--color-primary);
+            margin-bottom: var(--spacing-sm);
+            font-weight: 500;
+        }
+
+        .catalog-item__description {
+            font-size: 0.9375rem;
+            color: var(--color-text-light);
+            line-height: 1.6;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .catalog-item__features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--spacing-xs);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .feature-tag {
+            padding: 0.25rem 0.75rem;
+            background-color: var(--color-bg-light);
+            color: var(--color-text);
+            font-size: 0.75rem;
+            border-radius: 4px;
+        }
+
+        .catalog-item__footer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-top: var(--spacing-sm);
+            border-top: 1px solid var(--color-border);
+        }
+
+        .catalog-item__btn {
+            padding: 0.5rem 1.25rem;
+            background-color: transparent;
+            color: var(--color-primary);
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            border: 1px solid var(--color-primary);
+            border-radius: 6px;
+            cursor: pointer;
+            transition: var(--transition-base);
+        }
+
+        .catalog-item__btn:hover {
+            background-color: var(--color-primary);
+            color: #FFFFFF;
+        }
+
+        .back-button {
+            display: inline-block;
+            margin: var(--spacing-lg) auto;
+            padding: 1rem 2.5rem;
+            background-color: var(--color-primary);
+            color: #FFFFFF;
+            font-family: var(--font-body);
+            font-size: 0.9375rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            border-radius: 8px;
+            transition: var(--transition-base);
+            text-decoration: none;
+        }
+
+        .back-button:hover {
+            background-color: var(--color-secondary);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .back-button-container {
+            text-align: center;
+            padding: var(--spacing-xl) 0;
+        }
+
+        @media screen and (max-width: 768px) {
+            .catalog-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: var(--spacing-md);
+            }
+
+            .filter-btn {
+                font-size: 0.75rem;
+                padding: 0.5rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header class="header" id="header">
+        <nav class="nav container">
+            <a href="index.html#inicio" class="nav__logo">
+                <img src="logo.png" alt="Dekora - Decoração de Interiores" class="nav__logo-img">
+            </a>
+            <div class="nav__menu" id="nav-menu">
+                <ul class="nav__list">
+                    <li class="nav__item">
+                        <a href="index.html#inicio" class="nav__link">Início</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="index.html#dekora" class="nav__link">Dekora</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="projetos.html" class="nav__link">Projetos</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="catalogo.html" class="nav__link">Catálogo</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="index.html#contactos" class="nav__link">Contactos</a>
+                    </li>
+                </ul>
+            </div>
+            <button class="nav__toggle" id="nav-toggle" aria-label="Toggle navigation">
+                <span class="nav__toggle-line"></span>
+                <span class="nav__toggle-line"></span>
+                <span class="nav__toggle-line"></span>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Catalog Page -->
+    <section class="catalog-page">
+        <div class="container">
+            <div class="catalog-hero">
+                <h1 class="catalog-hero__title">Catálogo de Mobiliário</h1>
+                <p class="catalog-hero__subtitle">
+                    Descubra a nossa colecção exclusiva de mobiliário de alta qualidade,
+                    criado para transformar o seu espaço em algo extraordinário.
+                </p>
+            </div>
+
+            <!-- Filter Buttons -->
+            <div class="catalog-filter">
+                <button class="filter-btn active" data-filter="todos">Todos</button>
+                <button class="filter-btn" data-filter="sofas">Sofás</button>
+                <button class="filter-btn" data-filter="cadeiras">Cadeiras</button>
+                <button class="filter-btn" data-filter="mesas">Mesas</button>
+                <button class="filter-btn" data-filter="estantes">Estantes</button>
+            </div>
+
+            <!-- Catalog Grid -->
+            <div class="catalog-grid">
+                <!-- Sofa 1 -->
+                <article class="catalog-item" data-category="sofas" data-details='{"material":"Madeira de Nogueira Maciça, Estofado em Linho Premium","tamanho":"220cm (L) x 90cm (P) x 85cm (A)","cor":"Creme/Bege com acabamento em Nogueira"}'>
+                    <div class="catalog-item__image">
+                        <img src="https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?w=800&h=600&fit=crop&auto=format" alt="Sofá Elegance - Três lugares em madeira maciça" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+                        <span class="catalog-item__badge">Destaque</span>
+                    </div>
+                    <div class="catalog-item__content">
+                        <p class="catalog-item__category">Sofás</p>
+                        <h3 class="catalog-item__title">Sofá Elegance</h3>
+                        <p class="catalog-item__description">
+                            Sofá de três lugares em madeira maciça com estofado premium,
+                            inspirado em linhas clássicas medievais.
+                        </p>
+                        <div class="catalog-item__features">
+                            <span class="feature-tag">Madeira Maciça</span>
+                            <span class="feature-tag">3 Lugares</span>
+                            <span class="feature-tag">Artesanal</span>
+                        </div>
+                        <div class="catalog-item__footer">
+                            <button class="catalog-item__btn" onclick="openModal(this)">Ver Detalhes</button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Sofa 2 -->
+                <article class="catalog-item" data-category="sofas" data-details='{"material":"Carvalho Maciço, Estofado em Tecido de Alta Densidade","tamanho":"180cm (L) x 85cm (P) x 80cm (A)","cor":"Cinza Carvão com base em Carvalho Natural"}'>
+                    <div class="catalog-item__image">
+                        <img src="https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=800&h=600&fit=crop&auto=format" alt="Sofá Contemporâneo - Design moderno" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="catalog-item__content">
+                        <p class="catalog-item__category">Sofás</p>
+                        <h3 class="catalog-item__title">Sofá Contemporâneo</h3>
+                        <p class="catalog-item__description">
+                            Design moderno com linhas limpas, perfeito para ambientes
+                            contemporâneos e minimalistas.
+                        </p>
+                        <div class="catalog-item__features">
+                            <span class="feature-tag">Design Moderno</span>
+                            <span class="feature-tag">2 Lugares</span>
+                            <span class="feature-tag">Confortável</span>
+                        </div>
+                        <div class="catalog-item__footer">
+                            <button class="catalog-item__btn" onclick="openModal(this)">Ver Detalhes</button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Chair 1 -->
+                <article class="catalog-item" data-category="cadeiras" data-details='{"material":"Nogueira Maciça com Detalhes Esculpidos à Mão","tamanho":"50cm (L) x 55cm (P) x 105cm (A)","cor":"Nogueira Escura com Acabamento Natural"}'>
+                    <div class="catalog-item__image">
+                        <img src="https://images.unsplash.com/photo-1580480055273-228ff5388ef8?w=800&h=600&fit=crop&auto=format" alt="Cadeira Medieval - Madeira maciça esculpida" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+                        <span class="catalog-item__badge">Novidade</span>
+                    </div>
+                    <div class="catalog-item__content">
+                        <p class="catalog-item__category">Cadeiras</p>
+                        <h3 class="catalog-item__title">Cadeira Medieval</h3>
+                        <p class="catalog-item__description">
+                            Cadeira artesanal em madeira maciça com detalhes esculpidos,
+                            inspirada no estilo medieval português.
+                        </p>
+                        <div class="catalog-item__features">
+                            <span class="feature-tag">Madeira Nobre</span>
+                            <span class="feature-tag">Esculpida</span>
+                            <span class="feature-tag">Única</span>
+                        </div>
+                        <div class="catalog-item__footer">
+                            <button class="catalog-item__btn" onclick="openModal(this)">Ver Detalhes</button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Chair 2 -->
+                <article class="catalog-item" data-category="cadeiras" data-details='{"material":"Mogno Maciço, Estofado em Linho Premium","tamanho":"48cm (L) x 52cm (P) x 95cm (A)","cor":"Creme com estrutura em Mogno"}'>
+                    <div class="catalog-item__image">
+                        <img src="https://images.unsplash.com/photo-1581539250439-c96689b516dd?w=800&h=600&fit=crop&auto=format" alt="Cadeira Clássica - Elegância atemporal" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="catalog-item__content">
+                        <p class="catalog-item__category">Cadeiras</p>
+                        <h3 class="catalog-item__title">Cadeira Clássica</h3>
+                        <p class="catalog-item__description">
+                            Elegância atemporal com acabamento de alta qualidade,
+                            ideal para salas de jantar sofisticadas.
+                        </p>
+                        <div class="catalog-item__features">
+                            <span class="feature-tag">Clássica</span>
+                            <span class="feature-tag">Estofada</span>
+                            <span class="feature-tag">Premium</span>
+                        </div>
+                        <div class="catalog-item__footer">
+                            <button class="catalog-item__btn" onclick="openModal(this)">Ver Detalhes</button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Table 1 -->
+                <article class="catalog-item" data-category="mesas" data-details='{"material":"Carvalho Maciço com Acabamento Rústico Artesanal","tamanho":"240cm (L) x 100cm (P) x 75cm (A)","cor":"Carvalho Natural com Verniz Mate"}'>
+                    <div class="catalog-item__image">
+                        <img src="https://images.unsplash.com/photo-1595428774223-ef52624120d2?w=800&h=600&fit=crop&auto=format" alt="Mesa Rústica Grande - Madeira maciça para 8 pessoas" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+                        <span class="catalog-item__badge">Destaque</span>
+                    </div>
+                    <div class="catalog-item__content">
+                        <p class="catalog-item__category">Mesas</p>
+                        <h3 class="catalog-item__title">Mesa Rústica Grande</h3>
+                        <p class="catalog-item__description">
+                            Mesa de jantar em madeira maciça com capacidade para 8 pessoas,
+                            acabamento rústico artesanal.
+                        </p>
+                        <div class="catalog-item__features">
+                            <span class="feature-tag">8 Lugares</span>
+                            <span class="feature-tag">Madeira Maciça</span>
+                            <span class="feature-tag">Rústica</span>
+                        </div>
+                        <div class="catalog-item__footer">
+                            <button class="catalog-item__btn" onclick="openModal(this)">Ver Detalhes</button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Table 2 -->
+                <article class="catalog-item" data-category="mesas" data-details='{"material":"Vidro Temperado 12mm, Base em Nogueira Maciça","tamanho":"120cm (L) x 70cm (P) x 45cm (A)","cor":"Vidro Transparente com base em Nogueira"}'>
+                    <div class="catalog-item__image">
+                        <img src="https://images.unsplash.com/photo-1558211583-803a0f9b4b8f?w=800&h=600&fit=crop&auto=format" alt="Mesa de Centro - Design contemporâneo" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="catalog-item__content">
+                        <p class="catalog-item__category">Mesas</p>
+                        <h3 class="catalog-item__title">Mesa de Centro</h3>
+                        <p class="catalog-item__description">
+                            Design contemporâneo com tampo em vidro e base em madeira nobre,
+                            perfeita para salas modernas.
+                        </p>
+                        <div class="catalog-item__features">
+                            <span class="feature-tag">Vidro Temperado</span>
+                            <span class="feature-tag">Base Madeira</span>
+                            <span class="feature-tag">Moderna</span>
+                        </div>
+                        <div class="catalog-item__footer">
+                            <button class="catalog-item__btn" onclick="openModal(this)">Ver Detalhes</button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Shelf 1 -->
+                <article class="catalog-item" data-category="estantes" data-details='{"material":"Nogueira Maciça com Detalhes Esculpidos à Mão","tamanho":"90cm (L) x 40cm (P) x 200cm (A)","cor":"Nogueira Escura com Acabamento em Cera"}'>
+                    <div class="catalog-item__image">
+                        <img src="https://images.unsplash.com/photo-1594026112284-02bb6f3352fe?w=800&h=600&fit=crop&auto=format" alt="Estante Medieval - Madeira maciça com detalhes esculpidos" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="catalog-item__content">
+                        <p class="catalog-item__category">Estantes</p>
+                        <h3 class="catalog-item__title">Estante Medieval</h3>
+                        <p class="catalog-item__description">
+                            Estante alta em madeira maciça com prateleiras ajustáveis,
+                            detalhes esculpidos à mão.
+                        </p>
+                        <div class="catalog-item__features">
+                            <span class="feature-tag">5 Prateleiras</span>
+                            <span class="feature-tag">Ajustável</span>
+                            <span class="feature-tag">Artesanal</span>
+                        </div>
+                        <div class="catalog-item__footer">
+                            <button class="catalog-item__btn" onclick="openModal(this)">Ver Detalhes</button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Shelf 2 -->
+                <article class="catalog-item" data-category="estantes" data-details='{"material":"Carvalho Claro com Acabamento em Verniz Mate","tamanho":"150cm (L) x 35cm (P) x 180cm (A)","cor":"Carvalho Natural Claro"}'>
+                    <div class="catalog-item__image">
+                        <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=800&h=600&fit=crop&auto=format" alt="Estante Modular - Sistema versátil contemporâneo" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="catalog-item__content">
+                        <p class="catalog-item__category">Estantes</p>
+                        <h3 class="catalog-item__title">Estante Modular</h3>
+                        <p class="catalog-item__description">
+                            Sistema modular versátil com acabamento contemporâneo,
+                            ideal para escritórios e bibliotecas.
+                        </p>
+                        <div class="catalog-item__features">
+                            <span class="feature-tag">Modular</span>
+                            <span class="feature-tag">Personalizável</span>
+                            <span class="feature-tag">Versátil</span>
+                        </div>
+                        <div class="catalog-item__footer">
+                            <button class="catalog-item__btn" onclick="openModal(this)">Ver Detalhes</button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Custom Furniture -->
+                <article class="catalog-item" data-category="todos" data-details='{"material":"Madeiras Nobres (Nogueira/Carvalho), Mármore Branco, Ferragens Douradas","tamanho":"Personalizado conforme projeto do cliente","cor":"Personalizável - tons de madeira e acabamentos diversos"}'>
+                    <div class="catalog-item__image">
+                        <img src="https://images.unsplash.com/photo-1565538810643-b5bdb714032a?w=800&h=600&fit=crop&auto=format" alt="Cozinha Personalizada - Mobiliário à medida" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+                        <span class="catalog-item__badge">Personalizado</span>
+                    </div>
+                    <div class="catalog-item__content">
+                        <p class="catalog-item__category">Mobiliário à Medida</p>
+                        <h3 class="catalog-item__title">Cozinha Personalizada</h3>
+                        <p class="catalog-item__description">
+                            Criamos cozinhas completamente personalizadas, adaptadas ao seu
+                            espaço e necessidades específicas.
+                        </p>
+                        <div class="catalog-item__features">
+                            <span class="feature-tag">À Medida</span>
+                            <span class="feature-tag">Projeto Completo</span>
+                            <span class="feature-tag">Premium</span>
+                        </div>
+                        <div class="catalog-item__footer">
+                            <button class="catalog-item__btn" onclick="openModal(this)">Ver Detalhes</button>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Back Button -->
+    <div class="back-button-container">
+        <a href="index.html#inicio" class="back-button">Voltar à Página Principal</a>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer__container container">
+            <div class="footer__content">
+                <div class="footer__brand">
+                    <h3 class="footer__logo">DEKORA</h3>
+                    <p class="footer__description">
+                        Transformando espaços em experiências únicas desde 2013.
+                    </p>
+                </div>
+
+                <div class="footer__links">
+                    <h4 class="footer__title">Links Rápidos</h4>
+                    <ul class="footer__list">
+                        <li><a href="index.html#inicio" class="footer__link">Início</a></li>
+                        <li><a href="index.html#dekora" class="footer__link">Dekora</a></li>
+                        <li><a href="projetos.html" class="footer__link">Projetos</a></li>
+                        <li><a href="catalogo.html" class="footer__link">Catálogo</a></li>
+                        <li><a href="index.html#contactos" class="footer__link">Contactos</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer__social">
+                    <h4 class="footer__title">Siga-nos</h4>
+                    <div class="footer__social-links">
+                        <a href="#" class="footer__social-link" aria-label="Instagram">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="footer__social-link" aria-label="Facebook">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="footer__social-link" aria-label="Pinterest">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <circle cx="12" cy="12" r="10"/>
+                                <path d="M8.5 14.5c.5 1.5 2 3 4 3 3 0 5-2 5-5.5 0-3-2-5-5-5-3.5 0-6 2.5-6 6 0 1.5.5 2.5 1.5 3.5"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer__bottom">
+                <p class="footer__copy">
+                    &copy; 2024 Dekora. Todos os direitos reservados.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal de Detalhes -->
+    <div id="detailsModal" class="modal" onclick="closeModal(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <span class="modal-close" onclick="closeModal()">&times;</span>
+            <h2 id="modalTitle" class="modal-title"></h2>
+            <div class="modal-details">
+                <div class="detail-item">
+                    <strong>Material:</strong>
+                    <p id="modalMaterial"></p>
+                </div>
+                <div class="detail-item">
+                    <strong>Tamanho:</strong>
+                    <p id="modalTamanho"></p>
+                </div>
+                <div class="detail-item">
+                    <strong>Cor:</strong>
+                    <p id="modalCor"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background-color: var(--color-bg);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            max-width: 600px;
+            width: 90%;
+            position: relative;
+            animation: slideUp 0.3s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .modal-close {
+            position: absolute;
+            right: var(--spacing-md);
+            top: var(--spacing-md);
+            font-size: 2rem;
+            font-weight: 300;
+            color: var(--color-text-light);
+            cursor: pointer;
+            transition: var(--transition-base);
+            line-height: 1;
+        }
+
+        .modal-close:hover {
+            color: var(--color-secondary);
+        }
+
+        .modal-title {
+            font-size: 2rem;
+            color: var(--color-primary);
+            margin-bottom: var(--spacing-lg);
+            padding-right: var(--spacing-xl);
+        }
+
+        .modal-details {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-md);
+        }
+
+        .detail-item {
+            padding: var(--spacing-md);
+            background-color: var(--color-bg-light);
+            border-radius: 6px;
+            border-left: 3px solid var(--color-secondary);
+        }
+
+        .detail-item strong {
+            display: block;
+            color: var(--color-secondary);
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .detail-item p {
+            color: var(--color-text);
+            line-height: 1.6;
+            margin: 0;
+        }
+    </style>
+
+    <script>
+        // Função para abrir modal
+        function openModal(button) {
+            const item = button.closest('.catalog-item');
+            const title = item.querySelector('.catalog-item__title').textContent;
+            const details = JSON.parse(item.getAttribute('data-details'));
+
+            document.getElementById('modalTitle').textContent = title;
+            document.getElementById('modalMaterial').textContent = details.material;
+            document.getElementById('modalTamanho').textContent = details.tamanho;
+            document.getElementById('modalCor').textContent = details.cor;
+
+            document.getElementById('detailsModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Função para fechar modal
+        function closeModal(event) {
+            if (!event || event.target.id === 'detailsModal') {
+                document.getElementById('detailsModal').classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Fechar modal com tecla ESC
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
+        });
+
+        // Função de filtro
+        document.querySelectorAll('.filter-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                // Remove active de todos os botões
+                document.querySelectorAll('.filter-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+
+                // Adiciona active ao botão clicado
+                this.classList.add('active');
+
+                // Pega a categoria do filtro
+                const filter = this.getAttribute('data-filter');
+
+                // Filtra os itens
+                document.querySelectorAll('.catalog-item').forEach(item => {
+                    const category = item.getAttribute('data-category');
+
+                    if (filter === 'todos' || category === filter || category === 'todos') {
+                        item.style.display = 'block';
+                        setTimeout(() => {
+                            item.style.opacity = '1';
+                            item.style.transform = 'scale(1)';
+                        }, 10);
+                    } else {
+                        item.style.opacity = '0';
+                        item.style.transform = 'scale(0.9)';
+                        setTimeout(() => {
+                            item.style.display = 'none';
+                        }, 300);
+                    }
+                });
+            });
+        });
+
+        // Adiciona transição suave aos itens
+        document.querySelectorAll('.catalog-item').forEach(item => {
+            item.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+        });
+    </script>
+
+    <script src="script.js"></script>
+</body>
+</html>

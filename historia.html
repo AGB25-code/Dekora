@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="História e Timeline da Dekora - Decoração de interiores premium">
+    <title>Nossa História - Dekora</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        .timeline {
+            padding: var(--spacing-2xl) 0;
+            background-color: var(--color-bg);
+        }
+
+        .timeline__container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-md);
+        }
+
+        .timeline__header {
+            text-align: center;
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .timeline__item {
+            display: grid;
+            grid-template-columns: 150px 1fr;
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-xl);
+            padding-bottom: var(--spacing-xl);
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .timeline__item:last-child {
+            border-bottom: none;
+        }
+
+        .timeline__year {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            font-weight: 500;
+            color: var(--color-secondary);
+            text-align: right;
+            padding-top: 0.5rem;
+        }
+
+        .timeline__content h3 {
+            font-size: 1.5rem;
+            color: var(--color-primary);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .timeline__content p {
+            color: var(--color-text-light);
+            line-height: 1.8;
+        }
+
+        .valores {
+            padding: var(--spacing-2xl) 0;
+            background-color: var(--color-bg-light);
+        }
+
+        .valores__grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-lg);
+        }
+
+        .valores__item {
+            padding: var(--spacing-lg);
+            background-color: var(--color-bg);
+            border-radius: 8px;
+            border: 1px solid var(--color-border);
+            transition: var(--transition-base);
+        }
+
+        .valores__item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--color-secondary);
+        }
+
+        .valores__item h3 {
+            font-size: 1.25rem;
+            color: var(--color-secondary);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .back-button {
+            display: inline-block;
+            margin: var(--spacing-lg) auto;
+            padding: 1rem 2.5rem;
+            background-color: var(--color-primary);
+            color: #FFFFFF;
+            font-family: var(--font-body);
+            font-size: 0.9375rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            border-radius: 8px;
+            transition: var(--transition-base);
+            text-decoration: none;
+        }
+
+        .back-button:hover {
+            background-color: var(--color-secondary);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .back-button-container {
+            text-align: center;
+            padding: var(--spacing-xl) 0;
+        }
+
+        @media screen and (max-width: 768px) {
+            .timeline__item {
+                grid-template-columns: 100px 1fr;
+                gap: var(--spacing-md);
+            }
+
+            .timeline__year {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header class="header" id="header">
+        <nav class="nav container">
+            <a href="index.html#inicio" class="nav__logo">
+                <img src="logo.png" alt="Dekora - Decoração de Interiores" class="nav__logo-img">
+            </a>
+            <div class="nav__menu" id="nav-menu">
+                <ul class="nav__list">
+                    <li class="nav__item">
+                        <a href="index.html#inicio" class="nav__link">Início</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="index.html#dekora" class="nav__link">Dekora</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="projetos.html" class="nav__link">Projetos</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="catalogo.html" class="nav__link">Catálogo</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="index.html#contactos" class="nav__link">Contactos</a>
+                    </li>
+                </ul>
+            </div>
+            <button class="nav__toggle" id="nav-toggle" aria-label="Toggle navigation">
+                <span class="nav__toggle-line"></span>
+                <span class="nav__toggle-line"></span>
+                <span class="nav__toggle-line"></span>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Timeline Section -->
+    <section class="timeline">
+        <div class="timeline__container">
+            <div class="timeline__header">
+                <span class="section__subtitle">Nossa História</span>
+                <h2 class="section__title">A Evolução da Dekora</h2>
+            </div>
+
+            <div class="timeline__item">
+                <div class="timeline__year">1976</div>
+                <div class="timeline__content">
+                    <h3>Fundação da Dekora®</h3>
+                    <p>
+                        Fundada em 1976, a Dekora® é uma Empresa privada, situada em Paços de Ferreira, que se dedica à produção e comercialização de mobiliário, destinado ao sector doméstico e hoteleiro a nível da decoração de interiores.
+                    </p>
+                </div>
+            </div>
+
+            <div class="timeline__item">
+                <div class="timeline__year">Anos<br>Iniciais</div>
+                <div class="timeline__content">
+                    <h3>Especialização em Mobiliário Rústico</h3>
+                    <p>
+                        Desde o início da sua laboração, a Dekora® sempre se pautou por uma política de produtos exclusivos e únicos na sua área de actuação, especializando-se ao longo dos anos no mobiliário rústico artesanal, inspirado em linhas medievais e recorrendo ao uso integral de madeiras maciças no seu fabrico.
+                    </p>
+                </div>
+            </div>
+
+            <div class="timeline__item">
+                <div class="timeline__year">Expansão</div>
+                <div class="timeline__content">
+                    <h3>Diversificação de Produtos</h3>
+                    <p>
+                        Após uma primeira fase em que apoiou todo o seu saber no mobiliário tradicional rústico em madeiras maciças, direcionou o seu desenvolvimento para outras áreas de mobiliário, nomeadamente o mobiliário clássico de alta gama e o mobiliário contemporâneo com um leque mais alargado.
+                    </p>
+                </div>
+            </div>
+
+            <div class="timeline__item">
+                <div class="timeline__year">Mobiliário<br>à Medida</div>
+                <div class="timeline__content">
+                    <h3>Soluções Personalizadas</h3>
+                    <p>
+                        Em todo este espectro de actuação houve necessidade de abarcar, também, o mobiliário produzido por medida, especialmente na área das cozinhas e armários de casa de banho, bem como roupeiros embutidos.
+                    </p>
+                </div>
+            </div>
+
+            <div class="timeline__item">
+                <div class="timeline__year">Mercado<br>Global</div>
+                <div class="timeline__content">
+                    <h3>Expansão Internacional</h3>
+                    <p>
+                        A nossa experiência e qualidade de produto tem-nos permitido um desenvolvimento e actuação no mercado de forma expansiva, nomeadamente na exportação, abarcando mercados muito díspares.
+                    </p>
+                </div>
+            </div>
+
+            <div class="timeline__item">
+                <div class="timeline__year">Hoje</div>
+                <div class="timeline__content">
+                    <h3>Proximidade com o Cliente</h3>
+                    <p>
+                        A chave do sucesso da nossa política comercial deve-se ao facto de mantermos um contacto muito próximo do cliente final… afinal, a melhor publicidade é a satisfação plena do cliente.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Valores Section -->
+    <section class="valores">
+        <div class="container">
+            <div class="timeline__header">
+                <span class="section__subtitle">Nossos Valores</span>
+                <h2 class="section__title">O Que Nos Define</h2>
+            </div>
+            <div class="valores__grid">
+                <div class="valores__item">
+                    <h3>Excelência</h3>
+                    <p>
+                        Buscamos a perfeição em cada detalhe, desde o conceito inicial até à entrega final.
+                        A qualidade é inegociável em tudo o que fazemos.
+                    </p>
+                </div>
+                <div class="valores__item">
+                    <h3>Inovação</h3>
+                    <p>
+                        Mantemo-nos na vanguarda das tendências e tecnologias, sempre procurando novas
+                        formas de criar ambientes únicos e funcionais.
+                    </p>
+                </div>
+                <div class="valores__item">
+                    <h3>Sustentabilidade</h3>
+                    <p>
+                        Comprometidos com o futuro do planeta, integramos práticas eco-friendly em todos
+                        os nossos projectos sem comprometer a estética.
+                    </p>
+                </div>
+                <div class="valores__item">
+                    <h3>Colaboração</h3>
+                    <p>
+                        Acreditamos que os melhores resultados surgem da colaboração estreita com nossos
+                        clientes, ouvindo e transformando as suas visões em realidade.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Back Button -->
+    <div class="back-button-container">
+        <a href="index.html#dekora" class="back-button">Voltar à Página Principal</a>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer__container container">
+            <div class="footer__content">
+                <div class="footer__brand">
+                    <h3 class="footer__logo">DEKORA</h3>
+                    <p class="footer__description">
+                        Transformando espaços em experiências únicas desde 2013.
+                    </p>
+                </div>
+
+                <div class="footer__links">
+                    <h4 class="footer__title">Links Rápidos</h4>
+                    <ul class="footer__list">
+                        <li><a href="index.html#inicio" class="footer__link">Início</a></li>
+                        <li><a href="index.html#dekora" class="footer__link">Dekora</a></li>
+                        <li><a href="projetos.html" class="footer__link">Projetos</a></li>
+                        <li><a href="catalogo.html" class="footer__link">Catálogo</a></li>
+                        <li><a href="index.html#contactos" class="footer__link">Contactos</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer__social">
+                    <h4 class="footer__title">Siga-nos</h4>
+                    <div class="footer__social-links">
+                        <a href="#" class="footer__social-link" aria-label="Instagram">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="footer__social-link" aria-label="Facebook">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="footer__social-link" aria-label="Pinterest">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <circle cx="12" cy="12" r="10"/>
+                                <path d="M8.5 14.5c.5 1.5 2 3 4 3 3 0 5-2 5-5.5 0-3-2-5-5-5-3.5 0-6 2.5-6 6 0 1.5.5 2.5 1.5 3.5"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer__bottom">
+                <p class="footer__copy">
+                    &copy; 2024 Dekora. Todos os direitos reservados.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

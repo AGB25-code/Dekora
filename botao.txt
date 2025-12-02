@@ -1,0 +1,28 @@
+<a href="#catalogo" class="hero__cta-custom">Catálogo</a>
+
+<!-- CSS for this button (already in styles.css): -->
+<!--
+.hero__cta-custom {
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    background-color: var(--color-secondary);
+    color: #FFFFFF;
+    font-family: var(--font-body);
+    font-size: 0.9375rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    border-radius: 8px;
+    border: 1px solid var(--color-secondary);
+    transition: var(--transition-base);
+    animation: fadeInUp 1s ease 0.8s both;
+    text-decoration: none;
+}
+
+.hero__cta-custom:hover {
+    background-color: var(--color-accent);
+    border-color: var(--color-accent);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-sm);
+}
+-->
